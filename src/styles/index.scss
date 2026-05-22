@@ -1,11 +1,12 @@
-$button-color: #00acdc;
 $secondary: #616070;
 $main-accent: #060b35;
 $white: white;
 $border-color: #f3f3f3;
 $main-color: #00acdc;
+$header-shadow: #0000000d;
+$hover-card-title: #34568b;
 
-html{
+html {
   font-family: Roboto, sans-serif;
   font-style: normal;
 }
@@ -22,39 +23,22 @@ body {
   justify-content: space-between;
   padding: 0 50px;
 
-  &__link{
+  box-shadow: 0 2px 4px 0 rgba($header-shadow, 0.05);
+
+  &__link {
     text-decoration: none;
-
-    &--active {
-      position: relative;
-      color: $main-color;
-
-      &::after {
-        content: '';
-
-        position: absolute;
-        bottom: 0;
-        left: 0;
-
-        width: 100%;
-        height: 4px;
-        border-radius: 8px;
-
-        background-color: $main-color;
-      }
-    }
   }
 
   &__link--logo {
     display: flex;
   }
 
-  &__logo-img{
+  &__logo-img {
     width: 40px;
     height: 40px;
   }
 
-  &__nav-list{
+  &__nav-list {
     display: flex;
     align-items: center;
     margin: 0;
@@ -62,7 +46,7 @@ body {
     list-style: none;
   }
 
-    &__nav-list &__nav-item:not(:last-child) {
+  &__nav-list &__nav-item:not(:last-child) {
     margin-right: 20px;
   }
 
@@ -74,19 +58,60 @@ body {
 
     font-size: 12px;
     font-weight: 500;
-    color: black;
+    color: $main-accent;
     text-transform: uppercase;
 
+    transition: color 300ms;
+
     &:hover {
-        color: $main-color;
+      color: $main-color;
     }
+  }
+}
+
+.is-active {
+  position: relative;
+  color: $main-color;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+    border-radius: 8px;
+
+    background-color: $main-color;
   }
 }
 
 // #endregion header
 
-
 // #region cards
+
+.catalog {
+  display: grid;
+  place-content: center;
+  gap: 46px 48px;
+  padding: 50px 40px;
+  grid-template-columns: 200px;
+  grid-template-rows: repeat(auto-fit, 1fr);
+
+  @media (min-width: 488px) {
+    grid-template-columns: repeat(2, 200px);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 200px);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 200px);
+  }
+}
 
 .card {
   box-sizing: border-box;
@@ -94,8 +119,30 @@ body {
   padding: 32px 16px 16px;
   border: 1px solid $border-color;
   border-radius: 5px;
+  transition: transform 300ms;
 
-  &__image {
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    color: $main-accent;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0;
+
+    transition: color 300ms;
+  }
+
+  // &:hover &__title {
+  //   color: $hover-card-title;
+  // }
+
+  &__img {
     display: block;
     width: 160px;
     height: 134px;
@@ -111,34 +158,27 @@ body {
     padding: 0;
     color: $main-accent;
 
-    &--review-text {
-      font-weight: 400;
-      font-size: 10px;
-      line-height: 14px;
-      letter-spacing: 0%;
-    }
-
-    &--product-name {
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 18px;
-      letter-spacing: 0%;
-    }
-
     &--product-code {
       font-weight: 400;
       margin-top: 4px;
       font-size: 10px;
       line-height: 14px;
-      letter-spacing: 0%;
+      letter-spacing: 0;
       color: $secondary;
+    }
+
+    &--review-text {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 14px;
+      letter-spacing: 0;
     }
 
     &--price-label {
       font-weight: 400;
       font-size: 12px;
       line-height: 18px;
-      letter-spacing: 0%;
+      letter-spacing: 0;
       color: $secondary;
     }
 
@@ -146,7 +186,7 @@ body {
       font-weight: 700;
       font-size: 16px;
       line-height: 18px;
-      letter-spacing: 0%;
+      letter-spacing: 0;
     }
   }
 
@@ -173,27 +213,30 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    border: 1px solid $button-color;
+    border: 1px solid $main-color;
 
-    background-color: $button-color;
+    background-color: $main-color;
 
     color: $white;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-transform: uppercase;
     text-decoration: none;
 
+    transition:
+      background-color 300ms,
+      color 300ms;
+
     &:hover {
       background-color: $white;
-      color: $button-color;
+      color: $main-color;
     }
   }
 }
 
 // #endregion cards
-
 
 // #region stars
 
@@ -218,6 +261,3 @@ body {
 }
 
 // #endregion stars
-
-
-
