@@ -138,9 +138,9 @@ body {
     transition: color 300ms;
   }
 
-  // &:hover &__title {
-  //   color: $hover-card-title;
-  // }
+  &:hover &__title {
+    color: $hover-card-title;
+  }
 
   &__img {
     display: block;
